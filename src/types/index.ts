@@ -110,6 +110,9 @@ export interface GradeResult {
   technicalAnalysis: TechnicalAnalysis;
   screenshotUrl?: string;
   loadTime: number;
+  v1Score?: number;
+  v1Categories?: RubricCategory[];
+  v2Score?: number;
 }
 
 export interface ValidationResult {
