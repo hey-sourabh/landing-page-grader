@@ -3,8 +3,7 @@ import type { TechnicalAnalysis } from "@/types";
 
 export function analyzeTechnical(
   $: CheerioAPI,
-  url: string,
-  _headers?: Record<string, string>
+  url: string
 ): TechnicalAnalysis {
   // SSL check
   const hasSSL = url.startsWith("https://");

@@ -590,4 +590,3 @@ function scoreTechnical(tech: TechnicalAnalysis): Omit<RubricCategory, "weight">
     details,
   };
 }
-

@@ -23,7 +23,7 @@ export async function gradeUrl(url: string): Promise<GradeResult> {
       Promise.resolve(analyzeContent(page.$)),
       Promise.resolve(analyzeSEO(page.$, normalizedUrl)),
       Promise.resolve(analyzeConversion(page.$)),
-      Promise.resolve(analyzeTechnical(page.$, normalizedUrl, page.headers)),
+      Promise.resolve(analyzeTechnical(page.$, normalizedUrl)),
       Promise.resolve(detectAudience(page.$)),
     ]);
 

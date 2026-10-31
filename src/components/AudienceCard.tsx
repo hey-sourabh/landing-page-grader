@@ -147,4 +147,3 @@ export function AudienceCard({ audience }: AudienceCardProps) {
     </div>
   );
 }
-

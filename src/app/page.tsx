@@ -62,11 +62,10 @@ export default function HomePage() {
 
       setResult(data.data);
       setActiveTab("grader");
-    } catch (error: unknown) {
-      const err = error as Error;
+    } catch (err: unknown) {
       console.error("Grading failed:", err);
       setError(
-        err.message ||
+        (err instanceof Error ? err.message : null) ||
           "Could not analyze this URL. Please verify the URL is accessible and try again."
       );
     } finally {
