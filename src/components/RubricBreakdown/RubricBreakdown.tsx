@@ -94,44 +94,44 @@ export function RubricBreakdown({ categories }: RubricBreakdownProps) {
               {/* Category Header Row */}
               <div
                 onClick={() => toggleCategory(cat.key)}
-                className="p-5 flex items-center justify-between cursor-pointer select-none hover:bg-slate-50/70 dark:hover:bg-slate-800/40 transition-colors"
+                className="p-3.5 sm:p-5 flex items-center justify-between gap-3 cursor-pointer select-none hover:bg-slate-50/70 dark:hover:bg-slate-800/40 transition-colors"
               >
-                <div className="flex items-center gap-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+                <div className="flex items-center gap-2.5 sm:gap-3.5 min-w-0">
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center flex-shrink-0">
                     {getCategoryIcon(cat.key)}
                   </div>
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <h3 className="font-bold text-slate-900 dark:text-white text-base">
+                  <div className="min-w-0">
+                    <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+                      <h3 className="font-bold text-slate-900 dark:text-white text-sm sm:text-base truncate">
                         {cat.name}
                       </h3>
-                      <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+                      <span className="text-[10px] sm:text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 flex-shrink-0">
                         {Math.round(cat.weight * 100)}% Weight
                       </span>
                     </div>
                     {cat.audienceNote && (
-                      <p className="text-xs text-indigo-600 dark:text-indigo-400 font-medium mt-0.5 line-clamp-1">
+                      <p className="text-[11px] sm:text-xs text-indigo-600 dark:text-indigo-400 font-medium mt-0.5 line-clamp-1">
                         {cat.audienceNote}
                       </p>
                     )}
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2.5 sm:gap-4 flex-shrink-0">
                   <div className="text-right">
                     <div className="flex items-baseline justify-end gap-1">
-                      <span className={`text-lg font-black ${getScoreColor(percentage)}`}>
+                      <span className={`text-base sm:text-lg font-black ${getScoreColor(percentage)}`}>
                         {cat.score}
                       </span>
-                      <span className="text-xs text-slate-400">/ {cat.maxScore}</span>
+                      <span className="text-[11px] sm:text-xs text-slate-400">/ {cat.maxScore}</span>
                     </div>
-                    <span className="text-[11px] font-semibold text-slate-400">
+                    <span className="text-[10px] sm:text-[11px] font-semibold text-slate-400">
                       {percentage}% score
                     </span>
                   </div>
 
-                  <div className="w-7 h-7 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500">
-                    {isOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                  <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500">
+                    {isOpen ? <ChevronUp className="w-3.5 h-3.5 sm:w-4 sm:h-4" /> : <ChevronDown className="w-3.5 h-3.5 sm:w-4 sm:h-4" />}
                   </div>
                 </div>
               </div>

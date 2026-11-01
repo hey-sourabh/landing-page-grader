@@ -19,7 +19,7 @@ export interface UseGraderReturn {
   displayedCategories: RubricCategory[];
 }
 
-export function useGrader(initialUrl = "https://leena.ai/function/hr"): UseGraderReturn {
+export function useGrader(initialUrl?: string): UseGraderReturn {
   const [activeTab, setActiveTab] = useState<GraderTab>("grader");
   const [result, setResult] = useState<GradeResult | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -78,10 +78,10 @@ export function useGrader(initialUrl = "https://leena.ai/function/hr"): UseGrade
     }
   }, []);
 
-  // Run initial grade on mount so the user has immediate data
+  // Only auto-grade if an explicit initial URL is provided
   useEffect(() => {
-    if (initialUrl) {
-      gradePage(initialUrl);
+    if (initialUrl && initialUrl.trim()) {
+      gradePage(initialUrl.trim());
     }
   }, [initialUrl, gradePage]);
 

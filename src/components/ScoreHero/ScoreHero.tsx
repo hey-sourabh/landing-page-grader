@@ -188,7 +188,7 @@ export function ScoreHero({ result, selectedRubric, onToggleRubric }: ScoreHeroP
       </div>
 
       {/* Quick Telemetry Bar */}
-      <div className="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800/80 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 text-center">
+      <div className="mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-slate-100 dark:border-slate-800/80 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-4 text-center">
         <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/50">
           <div className="flex items-center justify-center gap-1 text-slate-400 text-xs mb-1">
             <Zap className="w-3.5 h-3.5 text-amber-500" />
