@@ -22,7 +22,6 @@ interface RubricBreakdownProps {
 }
 
 export function RubricBreakdown({ categories }: RubricBreakdownProps) {
-  // Track open state for categories (default first 2 open)
   const [openMap, setOpenMap] = useState<Record<string, boolean>>({
     conversion: true,
     performance: true,
@@ -91,7 +90,6 @@ export function RubricBreakdown({ categories }: RubricBreakdownProps) {
               key={cat.key}
               className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm overflow-hidden transition-all hover:border-slate-300 dark:hover:border-slate-700"
             >
-              {/* Category Header Row */}
               <div
                 onClick={() => toggleCategory(cat.key)}
                 className="p-3.5 sm:p-5 flex items-center justify-between gap-3 cursor-pointer select-none hover:bg-slate-50/70 dark:hover:bg-slate-800/40 transition-colors"
@@ -136,7 +134,6 @@ export function RubricBreakdown({ categories }: RubricBreakdownProps) {
                 </div>
               </div>
 
-              {/* Progress Bar */}
               <div className="w-full bg-slate-100 dark:bg-slate-800 h-1.5">
                 <div
                   className={`h-1.5 rounded-r transition-all duration-500 ${getScoreBgColor(
@@ -146,7 +143,6 @@ export function RubricBreakdown({ categories }: RubricBreakdownProps) {
                 />
               </div>
 
-              {/* Expanded Detail Rows */}
               {isOpen && (
                 <div className="p-5 pt-4 bg-slate-50/50 dark:bg-slate-900/50 border-t border-slate-100 dark:border-slate-800/80 space-y-3">
                   <div className="grid grid-cols-1 gap-3">
@@ -211,4 +207,3 @@ export function RubricBreakdown({ categories }: RubricBreakdownProps) {
     </div>
   );
 }
-

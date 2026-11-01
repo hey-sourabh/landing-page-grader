@@ -53,7 +53,6 @@ function analyzeAudienceSignals($: CheerioAPI): AudienceSignals {
     informationalSignals: [],
   };
 
-  // Enterprise signals
   const enterpriseKeywords = [
     "enterprise", "demo", "request a demo", "book a demo", "schedule a demo",
     "contact sales", "talk to sales", "custom pricing", "roi",
@@ -69,7 +68,6 @@ function analyzeAudienceSignals($: CheerioAPI): AudienceSignals {
     }
   }
 
-  // Check for enterprise-specific elements
   if ($('[class*="demo"], [id*="demo"]').length > 0) {
     signals.enterprise += 3;
     signals.enterpriseSignals.push("Has demo request section");
@@ -85,7 +83,6 @@ function analyzeAudienceSignals($: CheerioAPI): AudienceSignals {
     signals.enterpriseSignals.push("Shows client logos / trust badges");
   }
 
-  // Self-serve signals
   const selfServeKeywords = [
     "sign up", "signup", "get started", "free trial", "free plan",
     "start free", "no credit card", "instant", "try for free",
@@ -110,7 +107,6 @@ function analyzeAudienceSignals($: CheerioAPI): AudienceSignals {
     signals.selfServeSignals.push("Simple email signup form");
   }
 
-  // Information seeker signals
   const infoKeywords = [
     "blog", "article", "learn", "guide", "tutorial", "how to",
     "what is", "introduction", "overview", "resource", "webinar",
@@ -130,21 +126,18 @@ function analyzeAudienceSignals($: CheerioAPI): AudienceSignals {
     signals.informationalSignals.push("Has article/blog content structure");
   }
 
-  // Long-form content suggests informational
   const wordCount = bodyText.split(/\s+/).length;
   if (wordCount > 2000) {
     signals.informational += 3;
     signals.informationalSignals.push("Long-form content (2000+ words)");
   }
 
-  // Navigation depth suggests informational
   const navLinks = $("nav a").length;
   if (navLinks > 10) {
     signals.informational += 1;
     signals.informationalSignals.push("Extensive navigation structure");
   }
 
-  // Limit signals to top 5 each
   signals.enterpriseSignals = signals.enterpriseSignals.slice(0, 5);
   signals.selfServeSignals = signals.selfServeSignals.slice(0, 5);
   signals.informationalSignals = signals.informationalSignals.slice(0, 5);

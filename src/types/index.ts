@@ -3,13 +3,13 @@ export interface PageSpeedData {
   accessibilityScore: number;
   bestPracticesScore: number;
   seoScore: number;
-  lcp: number; // Largest Contentful Paint in ms
-  fid: number; // First Input Delay in ms
-  cls: number; // Cumulative Layout Shift
-  fcp: number; // First Contentful Paint in ms
-  si: number;  // Speed Index in ms
-  tbt: number; // Total Blocking Time in ms
-  ttfb: number; // Time to First Byte in ms
+  lcp: number;
+  fid: number;
+  cls: number;
+  fcp: number;
+  si: number;
+  tbt: number;
+  ttfb: number;
 }
 
 export type AudienceType = "enterprise-buyer" | "self-serve-user" | "information-seeker";

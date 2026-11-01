@@ -42,7 +42,6 @@ export default function HomePage() {
       <Navbar activeTab={activeTab} setActiveTab={setActiveTab} />
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6 sm:space-y-8">
-        {/* Header & URL Input Bar */}
         {activeTab === "grader" && (
           <div className="space-y-4 sm:space-y-6 text-center">
             <div className="max-w-2xl mx-auto space-y-2 px-2">
@@ -83,10 +82,8 @@ export default function HomePage() {
           </div>
         )}
 
-        {/* Tab 1: Grader View */}
         {activeTab === "grader" && (
           <>
-            {/* Loading State Skeleton */}
             {isLoading && !result && (
               <div className="space-y-6 pt-2 animate-pulse">
                 <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 space-y-6">
@@ -109,7 +106,6 @@ export default function HomePage() {
               </div>
             )}
 
-            {/* Empty State / Capabilities Showcase (Shown before any URL is graded) */}
             {!result && !isLoading && (
               <div className="max-w-4xl mx-auto space-y-6 pt-4">
                 <div className="text-center space-y-1">
@@ -122,7 +118,6 @@ export default function HomePage() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  {/* Card 1 */}
                   <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm space-y-3">
                     <div className="w-10 h-10 rounded-xl bg-amber-50 dark:bg-amber-950/50 border border-amber-200 dark:border-amber-800 flex items-center justify-center text-amber-600 dark:text-amber-400">
                       <Zap className="w-5 h-5" />
@@ -135,7 +130,6 @@ export default function HomePage() {
                     </p>
                   </div>
 
-                  {/* Card 2 */}
                   <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm space-y-3">
                     <div className="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-950/50 border border-indigo-200 dark:border-indigo-800 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
                       <Users className="w-5 h-5" />
@@ -148,7 +142,6 @@ export default function HomePage() {
                     </p>
                   </div>
 
-                  {/* Card 3 */}
                   <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm space-y-3">
                     <div className="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-800 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
                       <Target className="w-5 h-5" />
@@ -162,7 +155,6 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                {/* Quick Start Callout */}
                 <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-900 dark:to-indigo-950/30 border border-blue-200/80 dark:border-blue-900/40 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs sm:text-sm">
                   <div className="flex items-center gap-2.5">
                     <CheckCircle2 className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0" />
@@ -181,7 +173,6 @@ export default function HomePage() {
               </div>
             )}
 
-            {/* Results Teardown (Shown when a page has been graded) */}
             {result && (
               <div className="space-y-6 sm:space-y-8 pt-2">
                 <ScoreHero
@@ -196,7 +187,6 @@ export default function HomePage() {
           </>
         )}
 
-        {/* Tab 2: Real Results Benchmark (Checked against real results) */}
         {activeTab === "benchmark" && (
           <BenchmarkView
             onSelectUrlForGrading={(url) => {
@@ -206,7 +196,6 @@ export default function HomePage() {
           />
         )}
 
-        {/* Tab 3: Official Scoring Note */}
         {activeTab === "scoring-note" && <ScoringNoteView />}
       </main>
 

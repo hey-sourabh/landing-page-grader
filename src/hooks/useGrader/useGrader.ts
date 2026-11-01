@@ -59,7 +59,6 @@ export function useGrader(initialUrl?: string): UseGraderReturn {
       try {
         data = await response.json();
       } catch {
-        // Response was not JSON
       }
 
       if (!response.ok || !data?.success || !data.data) {
@@ -86,7 +85,6 @@ export function useGrader(initialUrl?: string): UseGraderReturn {
     }
   }, []);
 
-  // Only auto-grade if an explicit initial URL is provided
   useEffect(() => {
     if (initialUrl && initialUrl.trim()) {
       gradePage(initialUrl.trim());

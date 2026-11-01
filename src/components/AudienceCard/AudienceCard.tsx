@@ -5,7 +5,7 @@ import type { AudienceDetection } from "@/types";
 import { AUDIENCE_WEIGHT_EXPLANATION } from "@/lib/constants";
 import { Users, CheckCircle, Info, Compass } from "lucide-react";
 
-interface AudienceCardProps {
+export interface AudienceCardProps {
   audience: AudienceDetection;
 }
 
@@ -38,7 +38,6 @@ export function AudienceCard({ audience }: AudienceCardProps) {
 
   return (
     <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-7 shadow-lg space-y-5">
-      {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-2xl bg-indigo-50 dark:bg-indigo-950/50 border border-indigo-200 dark:border-indigo-800 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
@@ -64,12 +63,10 @@ export function AudienceCard({ audience }: AudienceCardProps) {
         </div>
       </div>
 
-      {/* Description */}
       <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed bg-slate-50 dark:bg-slate-800/40 p-3.5 rounded-xl border border-slate-100 dark:border-slate-800">
         {audience.description}
       </p>
 
-      {/* Extracted Page Signals */}
       <div>
         <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2.5 flex items-center gap-1.5">
           <Compass className="w-3.5 h-3.5 text-blue-500" />
@@ -94,7 +91,6 @@ export function AudienceCard({ audience }: AudienceCardProps) {
         </div>
       </div>
 
-      {/* Signal Weight Differential Callout (Assignment Hard Requirement) */}
       <div className="pt-3 border-t border-slate-100 dark:border-slate-800/80">
         <div className="flex items-center gap-2 mb-2">
           <Info className="w-4 h-4 text-indigo-500 flex-shrink-0" />

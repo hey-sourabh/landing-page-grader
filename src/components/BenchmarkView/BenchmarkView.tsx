@@ -21,7 +21,6 @@ export function BenchmarkView({ onSelectUrlForGrading }: BenchmarkViewProps) {
 
   return (
     <div className="max-w-6xl mx-auto space-y-8 py-2">
-      {/* Top Banner / Summary */}
       <div className="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
         <div className="relative z-10 max-w-3xl space-y-3">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs font-semibold border border-blue-400/30">
@@ -52,7 +51,6 @@ export function BenchmarkView({ onSelectUrlForGrading }: BenchmarkViewProps) {
         </div>
       </div>
 
-      {/* Main Ground Truth Comparison Table */}
       <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-md overflow-hidden space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div>
@@ -107,7 +105,6 @@ export function BenchmarkView({ onSelectUrlForGrading }: BenchmarkViewProps) {
                       </div>
                     </td>
 
-                    {/* Traffic Bar */}
                     <td className="py-3.5 px-3 min-w-[140px]">
                       <div className="flex items-center gap-1 text-[10px] text-slate-500 mb-1">
                         {page.trafficSplit.paidSearch > 0 && (
@@ -209,7 +206,6 @@ export function BenchmarkView({ onSelectUrlForGrading }: BenchmarkViewProps) {
         </div>
       </div>
 
-      {/* Selected Page Deep Dive */}
       <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-7 shadow-lg space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-4">
           <div>
@@ -231,7 +227,6 @@ export function BenchmarkView({ onSelectUrlForGrading }: BenchmarkViewProps) {
           </button>
         </div>
 
-        {/* Highlights Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
           <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800 space-y-2">
             <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
@@ -260,7 +255,6 @@ export function BenchmarkView({ onSelectUrlForGrading }: BenchmarkViewProps) {
         </div>
       </div>
 
-      {/* The Big Assignment Question: "One More Thing" */}
       <div className="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-slate-900 dark:to-amber-950/20 border-2 border-amber-300 dark:border-amber-800/80 rounded-3xl p-6 sm:p-8 shadow-lg space-y-4">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-2xl bg-amber-500 text-white flex items-center justify-center font-black shadow-md shadow-amber-500/30">

@@ -64,7 +64,7 @@ export const LEENA_VALIDATION_DATA = [
     },
     sessions: 18343,
     formFills: 103,
-    conversionRate: 103 / 18343, // ~0.56%
+    conversionRate: 103 / 18343,
   },
   {
     url: "https://leena.ai/function/hr",
@@ -79,7 +79,7 @@ export const LEENA_VALIDATION_DATA = [
     },
     sessions: 1907,
     formFills: 11,
-    conversionRate: 11 / 1907, // ~0.58%
+    conversionRate: 11 / 1907,
   },
   {
     url: "https://leena.ai/resources/webinars/christus-health-hr-ai-rollout-webinar",
@@ -94,7 +94,7 @@ export const LEENA_VALIDATION_DATA = [
     },
     sessions: 12437,
     formFills: 14,
-    conversionRate: 14 / 12437, // ~0.11%
+    conversionRate: 14 / 12437,
   },
 ];
 

@@ -69,15 +69,12 @@ export function UrlInputBar({ onGrade, isLoading, loadingStep }: UrlInputBarProp
 
   return (
     <div className="w-full max-w-4xl mx-auto space-y-4">
-      {/* Search Input Box */}
       <form onSubmit={handleSubmit} className="relative">
         <div className="relative flex items-center bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-800 rounded-2xl sm:rounded-3xl p-1.5 sm:p-2 shadow-lg shadow-slate-200/50 dark:shadow-none transition-all duration-200 focus-within:border-blue-500 dark:focus-within:border-blue-400 focus-within:ring-4 focus-within:ring-blue-500/10">
-          {/* Globe Icon */}
           <div className="pl-3 sm:pl-4 pr-1.5 sm:pr-2 text-slate-400 dark:text-slate-500 flex items-center justify-center flex-shrink-0">
             <Globe className="w-5 h-5 text-blue-500 dark:text-blue-400" />
           </div>
 
-          {/* Text Input */}
           <input
             type="text"
             value={inputUrl}
@@ -87,7 +84,6 @@ export function UrlInputBar({ onGrade, isLoading, loadingStep }: UrlInputBarProp
             className="flex-1 min-w-0 bg-transparent py-2.5 sm:py-3 px-2 text-sm sm:text-base text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none"
           />
 
-          {/* Clear Button */}
           {inputUrl && !isLoading && (
             <button
               type="button"
@@ -99,7 +95,6 @@ export function UrlInputBar({ onGrade, isLoading, loadingStep }: UrlInputBarProp
             </button>
           )}
 
-          {/* Submit Button */}
           <button
             type="submit"
             disabled={isLoading || !inputUrl.trim()}
@@ -120,7 +115,6 @@ export function UrlInputBar({ onGrade, isLoading, loadingStep }: UrlInputBarProp
           </button>
         </div>
 
-        {/* Live Progress Step Indicator */}
         {isLoading && (
           <div className="mt-3.5 p-3 rounded-2xl bg-blue-50/80 dark:bg-blue-950/40 border border-blue-200/80 dark:border-blue-900/50 flex items-center justify-center gap-2.5 text-xs sm:text-sm text-blue-700 dark:text-blue-300 font-medium animate-pulse">
             <Sparkles className="w-4 h-4 text-blue-600 dark:text-blue-400 flex-shrink-0 animate-spin" />
@@ -131,7 +125,6 @@ export function UrlInputBar({ onGrade, isLoading, loadingStep }: UrlInputBarProp
         )}
       </form>
 
-      {/* Dataset Presets */}
       <div className="pt-1">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2 px-1">
           <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">

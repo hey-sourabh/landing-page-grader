@@ -15,16 +15,15 @@ export function ScoreHero({ result, selectedRubric, onToggleRubric }: ScoreHeroP
   const currentScore = selectedRubric === "v1" ? result.v1Score ?? result.overallScore : result.overallScore;
   const currentLabel = getScoreLabel(currentScore);
 
-  // SVG Gauge calculations
   const radius = 64;
   const circumference = 2 * Math.PI * radius;
   const strokeDashoffset = circumference - (currentScore / 100) * circumference;
 
   const getStrokeColor = (score: number) => {
-    if (score >= 80) return "#10b981"; // emerald
-    if (score >= 60) return "#eab308"; // yellow
-    if (score >= 40) return "#f97316"; // orange
-    return "#ef4444"; // red
+    if (score >= 80) return "#10b981";
+    if (score >= 60) return "#eab308";
+    if (score >= 40) return "#f97316";
+    return "#ef4444";
   };
 
   const getLetterScore = (score: number) => {
@@ -40,12 +39,10 @@ export function ScoreHero({ result, selectedRubric, onToggleRubric }: ScoreHeroP
 
   return (
     <div className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden transition-all">
-      {/* Background ambient glow */}
       <div className="absolute top-0 right-0 -mt-12 -mr-12 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 -mb-12 -ml-12 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
-        {/* Left: URL, Domain & Audience Overview */}
         <div className="flex-1 text-center lg:text-left space-y-3">
           <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2">
             <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
@@ -75,7 +72,6 @@ export function ScoreHero({ result, selectedRubric, onToggleRubric }: ScoreHeroP
               : "Scored teardown with audience-calibrated conversion weighting and PageSpeed telemetry."}
           </p>
 
-          {/* Rubric Version Selector */}
           <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-2">
             <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 flex items-center gap-1">
               <Layers className="w-3.5 h-3.5" />
@@ -123,11 +119,9 @@ export function ScoreHero({ result, selectedRubric, onToggleRubric }: ScoreHeroP
           </div>
         </div>
 
-        {/* Right: Radial Score Gauge & Letter Grade */}
         <div className="flex flex-col sm:flex-row items-center gap-6">
           <div className="relative flex items-center justify-center">
             <svg className="w-36 h-36 transform -rotate-90" viewBox="0 0 160 160">
-              {/* Background circle */}
               <circle
                 cx="80"
                 cy="80"
@@ -137,7 +131,6 @@ export function ScoreHero({ result, selectedRubric, onToggleRubric }: ScoreHeroP
                 stroke="currentColor"
                 fill="transparent"
               />
-              {/* Animated Progress circle */}
               <circle
                 cx="80"
                 cy="80"
@@ -152,7 +145,6 @@ export function ScoreHero({ result, selectedRubric, onToggleRubric }: ScoreHeroP
               />
             </svg>
 
-            {/* Center score text */}
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
               <span className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
                 {formatScore(currentScore)}
@@ -187,7 +179,6 @@ export function ScoreHero({ result, selectedRubric, onToggleRubric }: ScoreHeroP
         </div>
       </div>
 
-      {/* Quick Telemetry Bar */}
       <div className="mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-slate-100 dark:border-slate-800/80 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-4 text-center">
         <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/50">
           <div className="flex items-center justify-center gap-1 text-slate-400 text-xs mb-1">
@@ -252,4 +243,3 @@ export function ScoreHero({ result, selectedRubric, onToggleRubric }: ScoreHeroP
     </div>
   );
 }
-

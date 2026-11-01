@@ -5,38 +5,30 @@ export function analyzeTechnical(
   $: CheerioAPI,
   url: string
 ): TechnicalAnalysis {
-  // SSL check
   const hasSSL = url.startsWith("https://");
 
-  // Mobile friendly indicators
   const hasViewport = $('meta[name="viewport"]').length > 0;
   const viewportContent = $('meta[name="viewport"]').attr("content") || "";
   const isMobileFriendly =
     hasViewport && viewportContent.includes("width=device-width");
 
-  // Structured data
   const hasStructuredData =
     $('script[type="application/ld+json"]').length > 0;
 
-  // Canonical
   const hasCanonical = $('link[rel="canonical"]').length > 0;
 
-  // Favicon
   const hasFavicon =
     $('link[rel="icon"]').length > 0 ||
     $('link[rel="shortcut icon"]').length > 0 ||
     $('link[rel="apple-touch-icon"]').length > 0;
 
-  // Robots
   const robotsMeta = $('meta[name="robots"]').attr("content") || "";
   const hasRobotsTxt = !robotsMeta.includes("noindex");
 
-  // Sitemap (check for sitemap link in HTML)
   const hasSitemap =
     $('a[href*="sitemap"]').length > 0 ||
     $('link[rel="sitemap"]').length > 0;
 
-  // Image optimization
   const images = $("img");
   const totalImages = images.length;
   let imagesWithAlt = 0;
@@ -46,7 +38,6 @@ export function analyzeTechnical(
     const alt = $(img).attr("alt");
     if (alt && alt.trim()) imagesWithAlt++;
 
-    // Check for modern image formats or lazy loading
     const src = $(img).attr("src") || "";
     const srcset = $(img).attr("srcset") || "";
     const loading = $(img).attr("loading");

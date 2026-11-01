@@ -12,7 +12,7 @@ export interface LeenaPageData {
   };
   sessions: number;
   formFills: number;
-  conversionRate: number; // percentage
+  conversionRate: number;
   detectedAudience: "enterprise-buyer" | "self-serve-user" | "information-seeker";
   audienceConfidence: number;
   v1Score: number;
@@ -40,13 +40,13 @@ export const LEENA_DATASET: LeenaPageData[] = [
     },
     sessions: 1907,
     formFills: 11,
-    conversionRate: (11 / 1907) * 100, // 0.5768%
+    conversionRate: (11 / 1907) * 100,
     detectedAudience: "enterprise-buyer",
     audienceConfidence: 88,
     v1Score: 68.4,
     v2Score: 84.6,
     v1Rank: 2,
-    v2Rank: 1, // Matches actual rank 1!
+    v2Rank: 1,
     actualRank: 1,
     pageSpeedScore: 62,
     highlights: [
@@ -72,13 +72,13 @@ export const LEENA_DATASET: LeenaPageData[] = [
     },
     sessions: 18343,
     formFills: 103,
-    conversionRate: (103 / 18343) * 100, // 0.5616%
+    conversionRate: (103 / 18343) * 100,
     detectedAudience: "enterprise-buyer",
     audienceConfidence: 74,
     v1Score: 78.2,
     v2Score: 81.3,
     v1Rank: 1,
-    v2Rank: 2, // Matches actual rank 2!
+    v2Rank: 2,
     actualRank: 2,
     pageSpeedScore: 71,
     highlights: [
@@ -104,13 +104,13 @@ export const LEENA_DATASET: LeenaPageData[] = [
     },
     sessions: 12437,
     formFills: 14,
-    conversionRate: (14 / 12437) * 100, // 0.1126%
+    conversionRate: (14 / 12437) * 100,
     detectedAudience: "information-seeker",
     audienceConfidence: 82,
     v1Score: 61.5,
     v2Score: 64.8,
     v1Rank: 3,
-    v2Rank: 3, // Matches actual rank 3!
+    v2Rank: 3,
     actualRank: 3,
     pageSpeedScore: 58,
     highlights: [

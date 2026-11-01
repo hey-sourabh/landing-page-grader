@@ -57,7 +57,6 @@ export async function fetchPage(url: string): Promise<FetchedPage> {
   } catch (error) {
     console.warn(`Live fetch failed for ${url}:`, error);
 
-    // If live fetch fails (DNS issue, offline, or anti-bot blocks), check if it's a known dataset page
     const snapshotHtml = getDatasetSnapshot(normalized);
     if (snapshotHtml) {
       const $ = cheerio.load(snapshotHtml);
@@ -75,7 +74,6 @@ export async function fetchPage(url: string): Promise<FetchedPage> {
       };
     }
 
-    // For arbitrary URLs that fail to connect, throw a clear human-readable message
     const err = error as Error;
     throw new Error(
       `Could not reach "${url}" (${err.message || "Connection refused"}). Please verify the domain is online and publicly reachable.`

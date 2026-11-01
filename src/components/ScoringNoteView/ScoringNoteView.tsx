@@ -21,7 +21,6 @@ export function ScoringNoteView() {
 
   return (
     <div className="max-w-4xl mx-auto space-y-6 py-2">
-      {/* Header Actions */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 sm:p-5 shadow-sm">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-900 flex items-center justify-center text-blue-600 dark:text-blue-400">
@@ -65,7 +64,6 @@ export function ScoringNoteView() {
         </div>
       </div>
 
-      {/* Main Document Body */}
       <article className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-10 shadow-xl space-y-8 font-serif sm:text-base leading-relaxed text-slate-800 dark:text-slate-200">
         <header className="border-b border-slate-200 dark:border-slate-800 pb-6 space-y-2 font-sans">
           <div className="text-xs font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400">

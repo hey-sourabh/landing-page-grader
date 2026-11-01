@@ -3,9 +3,8 @@ import { gradeUrl } from "@/lib/analyzer/grader";
 import { normalizeUrl } from "@/lib/utils";
 import type { GradeResult } from "@/types";
 
-// In-memory cache for fast repeated runs within same session
 const cache = new Map<string, { result: GradeResult; expiresAt: number }>();
-const CACHE_TTL_MS = 10 * 60 * 1000; // 10 minutes
+const CACHE_TTL_MS = 10 * 60 * 1000;
 
 export async function POST(req: NextRequest) {
   try {
@@ -21,7 +20,6 @@ export async function POST(req: NextRequest) {
 
     const url = normalizeUrl(rawUrl);
 
-    // Validate URL format
     try {
       new URL(url);
     } catch {
@@ -31,7 +29,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Check cache unless refresh requested
     const cacheKey = url.toLowerCase();
     const cached = cache.get(cacheKey);
     if (cached && cached.expiresAt > Date.now() && !body.refresh) {
@@ -42,10 +39,8 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    // Run grading engine
     const gradeResult = await gradeUrl(url);
 
-    // Cache the result
     cache.set(cacheKey, {
       result: gradeResult,
       expiresAt: Date.now() + CACHE_TTL_MS,

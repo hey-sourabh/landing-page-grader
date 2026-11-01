@@ -35,7 +35,6 @@ export async function getPageSpeedData(url: string): Promise<PageSpeedData> {
     strategy: "MOBILE",
   });
 
-  // Add multiple categories
   ["ACCESSIBILITY", "BEST_PRACTICES", "SEO"].forEach((cat) => {
     params.append("category", cat);
   });

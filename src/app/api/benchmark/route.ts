@@ -9,7 +9,7 @@ export async function GET() {
       scoringNote: SCORING_NOTE,
       summary: {
         totalEvaluated: LEENA_DATASET.length,
-        rankCorrelationV2: 1.0, // Spearman rank correlation matches actual rank 100%
+        rankCorrelationV2: 1.0,
         rankCorrelationV1: 0.5,
         keyInsight:
           "Rubric v2 (Audience-Aware) achieves 100% directional agreement with real-world conversion rates across the dataset.",

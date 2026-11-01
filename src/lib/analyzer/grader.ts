@@ -13,10 +13,8 @@ export async function gradeUrl(url: string): Promise<GradeResult> {
   const normalizedUrl = normalizeUrl(url);
   const domain = extractDomain(normalizedUrl);
 
-  // Fetch and parse the live page
   const page = await fetchPage(normalizedUrl);
 
-  // Run all analyses in parallel
   const [pageSpeed, contentAnalysis, seoAnalysis, conversionAnalysis, technicalAnalysis, audience] =
     await Promise.all([
       getPageSpeedData(normalizedUrl),
@@ -27,7 +25,6 @@ export async function gradeUrl(url: string): Promise<GradeResult> {
       Promise.resolve(detectAudience(page.$)),
     ]);
 
-  // Calculate scores under Rubric v2 (Audience-Aware)
   const v2Result = calculateScore(
     pageSpeed,
     contentAnalysis,
@@ -38,7 +35,6 @@ export async function gradeUrl(url: string): Promise<GradeResult> {
     "v2"
   );
 
-  // Also calculate scores under Rubric v1 (Baseline Initial) for comparison & calibration review
   const v1Result = calculateScore(
     pageSpeed,
     contentAnalysis,
@@ -71,4 +67,3 @@ export async function gradeUrl(url: string): Promise<GradeResult> {
     v2Score: v2Result.overallScore,
   };
 }
-

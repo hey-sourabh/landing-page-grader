@@ -16,7 +16,6 @@ export interface ScorerOutput {
   rubricVersion: "v1" | "v2";
 }
 
-// Rubric v1 (Initial baseline: static weights, no audience adaptation)
 export const RUBRIC_V1_WEIGHTS = {
   performance: 0.30,
   seo: 0.20,
@@ -56,7 +55,6 @@ export function calculateScore(
     { ...technicalCategory, weight: weights.technical },
   ];
 
-  // Calculate weighted overall score
   const overallScore = categories.reduce((total, cat) => {
     const normalizedScore = (cat.score / cat.maxScore) * 100;
     return total + normalizedScore * cat.weight;
@@ -72,7 +70,6 @@ export function calculateScore(
 function scorePerformance(ps: PageSpeedData): Omit<RubricCategory, "weight"> {
   const details: RubricDetail[] = [];
 
-  // PageSpeed Performance Score (0-30 points)
   const perfScore = Math.round((Math.max(0, Math.min(100, ps.performanceScore)) / 100) * 30);
   details.push({
     label: "Lighthouse Performance Metric",
@@ -85,7 +82,6 @@ function scorePerformance(ps: PageSpeedData): Omit<RubricCategory, "weight"> {
         : undefined,
   });
 
-  // LCP (Largest Contentful Paint) (0-25 points)
   let lcpScore = 0;
   if (ps.lcp <= 2500) lcpScore = 25;
   else if (ps.lcp <= 4000) lcpScore = 15;
@@ -103,7 +99,6 @@ function scorePerformance(ps: PageSpeedData): Omit<RubricCategory, "weight"> {
         : undefined,
   });
 
-  // CLS (Cumulative Layout Shift) (0-20 points)
   let clsScore = 0;
   if (ps.cls <= 0.1) clsScore = 20;
   else if (ps.cls <= 0.25) clsScore = 12;
@@ -121,7 +116,6 @@ function scorePerformance(ps: PageSpeedData): Omit<RubricCategory, "weight"> {
         : undefined,
   });
 
-  // TBT (Total Blocking Time) (0-25 points)
   let tbtScore = 0;
   if (ps.tbt <= 200) tbtScore = 25;
   else if (ps.tbt <= 600) tbtScore = 15;
@@ -154,7 +148,6 @@ function scorePerformance(ps: PageSpeedData): Omit<RubricCategory, "weight"> {
 function scoreSEO(seo: SEOAnalysis): Omit<RubricCategory, "weight"> {
   const details: RubricDetail[] = [];
 
-  // Title tag (0-20 points)
   const titleScore =
     seo.titleLength >= 30 && seo.titleLength <= 65
       ? 20
@@ -177,7 +170,6 @@ function scoreSEO(seo: SEOAnalysis): Omit<RubricCategory, "weight"> {
         : undefined,
   });
 
-  // Meta description (0-20 points)
   const metaScore =
     seo.metaDescriptionLength >= 120 && seo.metaDescriptionLength <= 165
       ? 20
@@ -200,7 +192,6 @@ function scoreSEO(seo: SEOAnalysis): Omit<RubricCategory, "weight"> {
         : undefined,
   });
 
-  // Heading hierarchy (0-20 points)
   let headingScore = 0;
   if (seo.hasH1) headingScore += 10;
   if (seo.h1Count === 1) headingScore += 5;
@@ -219,7 +210,6 @@ function scoreSEO(seo: SEOAnalysis): Omit<RubricCategory, "weight"> {
         : undefined,
   });
 
-  // Open Graph & Social Cards (0-20 points)
   let socialScore = 0;
   if (seo.hasOpenGraph) socialScore += 10;
   if (seo.hasTwitterCard) socialScore += 10;
@@ -235,7 +225,6 @@ function scoreSEO(seo: SEOAnalysis): Omit<RubricCategory, "weight"> {
         : undefined,
   });
 
-  // Canonical tag & Link architecture (0-20 points)
   let linkScore = 0;
   if (seo.hasCanonical) linkScore += 10;
   if (seo.internalLinks >= 4) linkScore += 10;
@@ -268,7 +257,6 @@ function scoreContent(
 ): Omit<RubricCategory, "weight"> {
   const details: RubricDetail[] = [];
 
-  // Headline clarity (0-25 points)
   const headlineScore = Math.round((content.headlineClarity / 100) * 25);
   details.push({
     label: "Headline Clarity & Value Hook",
@@ -283,7 +271,6 @@ function scoreContent(
         : undefined,
   });
 
-  // Value proposition (0-25 points)
   const vpScore = Math.round((content.valueProposition / 100) * 25);
   details.push({
     label: "Value Proposition Strength",
@@ -296,7 +283,6 @@ function scoreContent(
         : undefined,
   });
 
-  // CTA text & Actionability (0-25 points)
   const ctaScore = Math.round((content.ctaQuality / 100) * 25);
   details.push({
     label: "Call-to-Action Actionability",
@@ -309,7 +295,6 @@ function scoreContent(
         : undefined,
   });
 
-  // Readability & Content Length (0-25 points)
   const readScore = Math.round((content.readabilityScore / 100) * 25);
   details.push({
     label: "Readability & Scannability",
@@ -351,15 +336,13 @@ function scoreConversion(
 ): Omit<RubricCategory, "weight"> {
   const details: RubricDetail[] = [];
 
-  // Form presence and low-friction fields (0-20 points)
   let formScore = 0;
   if (conv.formCount > 0) {
     formScore += 10;
-    if (conv.formFields >= 1 && conv.formFields <= 5) formScore += 10; // optimal friction
+    if (conv.formFields >= 1 && conv.formFields <= 5) formScore += 10;
     else if (conv.formFields > 5 && conv.formFields <= 8) formScore += 6;
     else formScore += 3;
   } else if (conv.ctaCount > 0) {
-    // If modal/offsite CTA exists
     formScore += 7;
   }
 
@@ -379,7 +362,6 @@ function scoreConversion(
         : undefined,
   });
 
-  // Above-the-fold CTA trigger (0-20 points)
   const aboveFoldScore = conv.aboveFoldCTA ? 20 : 0;
   details.push({
     label: "Above-the-Fold Primary CTA",
@@ -391,7 +373,6 @@ function scoreConversion(
     recommendation: !conv.aboveFoldCTA ? "Place a primary action button in the hero banner above the fold." : undefined,
   });
 
-  // Social Proof & Enterprise Trust Logos (0-20 points)
   let proofScore = 0;
   if (conv.hasTestimonials) proofScore += 10;
   if (conv.hasLogos) proofScore += 10;
@@ -407,7 +388,6 @@ function scoreConversion(
         : undefined,
   });
 
-  // Rich Supporting Signals: Video, FAQ, Pricing, Live Chat (0-20 points)
   let supportScore = 0;
   if (conv.hasVideo) supportScore += 5;
   if (conv.hasFAQ) supportScore += 5;
@@ -433,7 +413,6 @@ function scoreConversion(
         : undefined,
   });
 
-  // Contact Clarity & Redundancy (0-20 points)
   let contactScore = 0;
   if (conv.hasPhoneNumber) contactScore += 10;
   if (conv.ctaCount >= 2) contactScore += 10;
@@ -476,7 +455,6 @@ function scoreAccessibility(
 ): Omit<RubricCategory, "weight"> {
   const details: RubricDetail[] = [];
 
-  // Lighthouse accessibility score (0-40 points)
   const a11yScore = Math.round((Math.max(0, Math.min(100, ps.accessibilityScore)) / 100) * 40);
   details.push({
     label: "Lighthouse Accessibility Audit",
@@ -489,7 +467,6 @@ function scoreAccessibility(
         : undefined,
   });
 
-  // Image alt text coverage (0-30 points)
   const altScore =
     tech.totalImages === 0 ? 30 : Math.round((tech.imagesWithAlt / tech.totalImages) * 30);
   details.push({
@@ -501,7 +478,6 @@ function scoreAccessibility(
       altScore < 25 ? "Provide descriptive alt text for screen readers on all illustrative graphics." : undefined,
   });
 
-  // Mobile viewport configuration (0-30 points)
   const mobileScore = tech.isMobileFriendly ? 30 : 0;
   details.push({
     label: "Responsive Mobile Viewport",
@@ -528,7 +504,6 @@ function scoreAccessibility(
 function scoreTechnical(tech: TechnicalAnalysis): Omit<RubricCategory, "weight"> {
   const details: RubricDetail[] = [];
 
-  // SSL / HTTPS (0-25 points)
   details.push({
     label: "Transport Layer Security (HTTPS)",
     score: tech.hasSSL ? 25 : 0,
@@ -537,7 +512,6 @@ function scoreTechnical(tech: TechnicalAnalysis): Omit<RubricCategory, "weight">
     recommendation: !tech.hasSSL ? "Force automatic redirection to HTTPS." : undefined,
   });
 
-  // Structured Data (Schema.org / JSON-LD) (0-25 points)
   details.push({
     label: "Schema.org Structured Data",
     score: tech.hasStructuredData ? 25 : 0,
@@ -551,7 +525,6 @@ function scoreTechnical(tech: TechnicalAnalysis): Omit<RubricCategory, "weight">
         : undefined,
   });
 
-  // Modern Image Optimization (0-25 points)
   const imgOptScore = Math.round((tech.imageOptimization / 100) * 25);
   details.push({
     label: "Next-Gen Image Formats & Lazy Loading",
@@ -564,7 +537,6 @@ function scoreTechnical(tech: TechnicalAnalysis): Omit<RubricCategory, "weight">
         : undefined,
   });
 
-  // Essential Health Checks (Favicon, Canonical, Robots) (0-25 points)
   let healthScore = 0;
   if (tech.hasFavicon) healthScore += 8;
   if (tech.hasCanonical) healthScore += 9;

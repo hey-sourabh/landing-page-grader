@@ -27,7 +27,6 @@ export function Navbar({ activeTab, setActiveTab }: NavbarProps) {
   return (
     <header className="sticky top-0 z-50 backdrop-blur-md bg-white/95 dark:bg-slate-950/95 border-b border-slate-200 dark:border-slate-800 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
-        {/* Left: Brand & Logo */}
         <div
           onClick={() => handleSelectTab("grader")}
           className="flex items-center gap-2.5 cursor-pointer group flex-shrink-0"
@@ -50,9 +49,7 @@ export function Navbar({ activeTab, setActiveTab }: NavbarProps) {
           </div>
         </div>
 
-        {/* Desktop Navigation Tabs (Hidden on mobile) */}
         <nav className="hidden sm:flex items-center gap-1.5 lg:gap-2">
-          {/* Tab 1: Grader */}
           <button
             type="button"
             onClick={() => handleSelectTab("grader")}
@@ -66,7 +63,6 @@ export function Navbar({ activeTab, setActiveTab }: NavbarProps) {
             <span>Grader</span>
           </button>
 
-          {/* Tab 2: Real Results / Benchmark */}
           <button
             type="button"
             onClick={() => handleSelectTab("benchmark")}
@@ -83,7 +79,6 @@ export function Navbar({ activeTab, setActiveTab }: NavbarProps) {
             </span>
           </button>
 
-          {/* Tab 3: Official Scoring Note */}
           <button
             type="button"
             onClick={() => handleSelectTab("scoring-note")}
@@ -98,7 +93,6 @@ export function Navbar({ activeTab, setActiveTab }: NavbarProps) {
           </button>
         </nav>
 
-        {/* Mobile Hamburger Button (Visible only on mobile < sm) */}
         <div className="flex sm:hidden items-center">
           <button
             type="button"
@@ -115,10 +109,8 @@ export function Navbar({ activeTab, setActiveTab }: NavbarProps) {
         </div>
       </div>
 
-      {/* Mobile Dropdown Drawer */}
       {mobileMenuOpen && (
         <div className="sm:hidden border-t border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-950/95 backdrop-blur-xl px-4 py-4 space-y-2 shadow-2xl transition-all animate-in fade-in slide-in-from-top-2 duration-150">
-          {/* Mobile Item 1: Grader */}
           <button
             type="button"
             onClick={() => handleSelectTab("grader")}
@@ -148,7 +140,6 @@ export function Navbar({ activeTab, setActiveTab }: NavbarProps) {
             <ChevronRight className="w-4 h-4 text-slate-400 flex-shrink-0" />
           </button>
 
-          {/* Mobile Item 2: Real Results */}
           <button
             type="button"
             onClick={() => handleSelectTab("benchmark")}
@@ -183,7 +174,6 @@ export function Navbar({ activeTab, setActiveTab }: NavbarProps) {
             <ChevronRight className="w-4 h-4 text-slate-400 flex-shrink-0" />
           </button>
 
-          {/* Mobile Item 3: Scoring Note */}
           <button
             type="button"
             onClick={() => handleSelectTab("scoring-note")}
