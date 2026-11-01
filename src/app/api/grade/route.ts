@@ -64,9 +64,9 @@ export async function POST(req: NextRequest) {
         success: false,
         error:
           err.message ||
-          "Failed to fetch and grade the requested URL. Please ensure the site is reachable.",
+          "Failed to fetch and grade the requested URL. Please ensure the site is live and reachable.",
       },
-      { status: 500 }
+      { status: 422 }
     );
   }
 }

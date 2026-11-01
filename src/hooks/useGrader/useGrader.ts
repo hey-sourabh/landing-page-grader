@@ -55,10 +55,18 @@ export function useGrader(initialUrl?: string): UseGraderReturn {
       clearTimeout(timer2);
       clearTimeout(timer3);
 
-      const data = await response.json();
+      let data: { success?: boolean; data?: GradeResult; error?: string } | null = null;
+      try {
+        data = await response.json();
+      } catch {
+        // Response was not JSON
+      }
 
-      if (!response.ok || !data.success) {
-        throw new Error(data.error || "Failed to grade page.");
+      if (!response.ok || !data?.success || !data.data) {
+        throw new Error(
+          data?.error ||
+          `Server returned HTTP ${response.status}. Please verify the URL is valid and reachable.`
+        );
       }
 
       setResult(data.data);
