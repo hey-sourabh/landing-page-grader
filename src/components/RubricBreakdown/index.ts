@@ -1,1 +1,2 @@
-export * from './RubricBreakdown';
+export { RubricBreakdown } from "./RubricBreakdown";
+export { RubricCategoryCard } from "./RubricCategoryCard";

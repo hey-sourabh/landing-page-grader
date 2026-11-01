@@ -9,19 +9,11 @@ import {
   RubricBreakdown,
   BenchmarkView,
   ScoringNoteView,
+  EmptyState,
   Footer,
 } from "@/components";
 import { useGrader } from "@/hooks";
-import {
-  AlertCircle,
-  RefreshCw,
-  Sparkles,
-  Zap,
-  Users,
-  Target,
-  ArrowRight,
-  CheckCircle2,
-} from "lucide-react";
+import { AlertCircle, RefreshCw, Sparkles } from "lucide-react";
 
 export default function HomePage() {
   const {
@@ -107,70 +99,7 @@ export default function HomePage() {
             )}
 
             {!result && !isLoading && (
-              <div className="max-w-4xl mx-auto space-y-6 pt-4">
-                <div className="text-center space-y-1">
-                  <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
-                    What Gets Scored & How It Works
-                  </h2>
-                  <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-                    Every point traces back to an inspectable node on the page. Enter any URL above or choose a preset.
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm space-y-3">
-                    <div className="w-10 h-10 rounded-xl bg-amber-50 dark:bg-amber-950/50 border border-amber-200 dark:border-amber-800 flex items-center justify-center text-amber-600 dark:text-amber-400">
-                      <Zap className="w-5 h-5" />
-                    </div>
-                    <h3 className="font-bold text-sm sm:text-base text-slate-900 dark:text-white">
-                      Live Telemetry & Web Vitals
-                    </h3>
-                    <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                      Real-time DOM parsing via Cheerio + live Google PageSpeed Insights v5 API measuring LCP, TBT, and CLS. No mock data.
-                    </p>
-                  </div>
-
-                  <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm space-y-3">
-                    <div className="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-950/50 border border-indigo-200 dark:border-indigo-800 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
-                      <Users className="w-5 h-5" />
-                    </div>
-                    <h3 className="font-bold text-sm sm:text-base text-slate-900 dark:text-white">
-                      Audience Detection Engine
-                    </h3>
-                    <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                      Detects Enterprise Buyer, Self-Serve User, or Information Seeker. Changes what &ldquo;good&rdquo; means for that audience.
-                    </p>
-                  </div>
-
-                  <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm space-y-3">
-                    <div className="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-800 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
-                      <Target className="w-5 h-5" />
-                    </div>
-                    <h3 className="font-bold text-sm sm:text-base text-slate-900 dark:text-white">
-                      Empirical Calibration (v1 vs v2)
-                    </h3>
-                    <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                      Calibrated against 90-day Leena AI production data, improving rank correlation from 0.5 (v1) to a perfect 1.0 (v2).
-                    </p>
-                  </div>
-                </div>
-
-                <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-900 dark:to-indigo-950/30 border border-blue-200/80 dark:border-blue-900/40 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs sm:text-sm">
-                  <div className="flex items-center gap-2.5">
-                    <CheckCircle2 className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">
-                      Want to see it in action immediately? Try the <strong>Leena AI — HR Solution</strong> preset above.
-                    </span>
-                  </div>
-                  <button
-                    onClick={() => gradePage("https://leena.ai/function/hr")}
-                    className="inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs flex-shrink-0 transition-colors shadow-sm"
-                  >
-                    <span>Run HR Preset</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-              </div>
+              <EmptyState onSelectSampleUrl={(url) => gradePage(url)} />
             )}
 
             {result && (
