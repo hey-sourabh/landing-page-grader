@@ -86,36 +86,73 @@ npm run start
 src/
 ├── app/
 │   ├── api/
-│   │   ├── benchmark/route.ts  # Endpoint serving ground-truth dataset & metrics
-│   │   └── grade/route.ts      # Live grading engine endpoint with in-memory caching
-│   ├── globals.css             # Tailwind v4 theme & global variables
-│   ├── layout.tsx              # Root HTML layout & metadata
-│   └── page.tsx                # Main single-page interactive application
-├── components/
-│   ├── AudienceCard.tsx        # Audience detection display & weight differential callout
-│   ├── BenchmarkView.tsx       # Ground-truth comparison dashboard & disagreement analysis
-│   ├── Footer.tsx              # Application footer
-│   ├── Navbar.tsx              # Navigation bar with tab switcher
-│   ├── RubricBreakdown.tsx     # 6 expandable category score cards with actionable tips
-│   ├── ScoreHero.tsx           # Radial SVG score gauge, letter grade & Rubric v1/v2 toggle
-│   ├── ScoringNoteView.tsx     # Formatted 1-page official scoring note deliverable
-│   └── UrlInputBar.tsx         # Live URL input with presets and progressive loading states
+│   │   ├── benchmark/route.ts       # Endpoint serving ground-truth dataset & metrics
+│   │   └── grade/route.ts           # Live grading engine endpoint with in-memory caching
+│   ├── globals.css                  # Tailwind v4 theme & global variables
+│   ├── layout.tsx                   # Root HTML layout & metadata
+│   └── page.tsx                     # Main page consuming useGrader custom hook
+├── components/                      # Modular Component Architecture (Folder -> File + index.ts)
+│   ├── AudienceCard/
+│   │   ├── AudienceCard.tsx         # Audience detection display & weight differential callout
+│   │   └── index.ts
+│   ├── BenchmarkView/
+│   │   ├── BenchmarkView.tsx        # Ground-truth comparison dashboard & disagreement analysis
+│   │   └── index.ts
+│   ├── Footer/
+│   │   ├── Footer.tsx               # Application footer
+│   │   └── index.ts
+│   ├── Navbar/
+│   │   ├── Navbar.tsx               # Navigation bar with tab switcher
+│   │   └── index.ts
+│   ├── RubricBreakdown/
+│   │   ├── RubricBreakdown.tsx      # 6 expandable category score cards with actionable tips
+│   │   └── index.ts
+│   ├── ScoreHero/
+│   │   ├── ScoreHero.tsx            # Radial SVG score gauge, letter grade & Rubric v1/v2 toggle
+│   │   └── index.ts
+│   ├── ScoringNoteView/
+│   │   ├── ScoringNoteView.tsx      # Formatted 1-page official scoring note deliverable
+│   │   └── index.ts
+│   ├── UrlInputBar/
+│   │   ├── UrlInputBar.tsx          # Live URL input with presets and progressive loading states
+│   │   └── index.ts
+│   └── index.ts                     # Master component barrel export
+├── hooks/                           # Reusable Custom React Hooks
+│   ├── useClipboard/
+│   │   ├── useClipboard.ts          # Reusable copy-to-clipboard hook with auto-reset
+│   │   └── index.ts
+│   ├── useGrader/
+│   │   ├── useGrader.ts             # Orchestrates grading state, progress telemetry & tabs
+│   │   └── index.ts
+│   └── index.ts                     # Master hooks barrel export
+├── utils/                           # Clean Utilities Architecture
+│   ├── cn/
+│   │   ├── cn.ts                    # Tailwind CSS class merging utility
+│   │   └── index.ts
+│   ├── format/
+│   │   ├── format.ts                # Score badges, colors, grades and formatters
+│   │   └── index.ts
+│   ├── url/
+│   │   ├── url.ts                   # URL validation, normalization & domain extraction
+│   │   └── index.ts
+│   └── index.ts                     # Master utils barrel export
 ├── lib/
-│   ├── analyzer/
-│   │   ├── audience-detector.ts # Semantic persona classification
-│   │   ├── content-analyzer.ts  # Headline clarity, value prop & readability
-│   │   ├── conversion-analyzer.ts# Forms, CTAs, testimonials & trust signals
-│   │   ├── grader.ts            # Orchestration engine (fetches, parses, audits)
-│   │   ├── page-fetcher.ts      # HTTP client with timeouts & header extraction
-│   │   ├── pagespeed.ts         # Google PageSpeed Insights API client
-│   │   ├── scorer.ts            # Deterministic scoring logic for Rubric v1 & v2
-│   │   ├── seo-analyzer.ts      # Meta tags, headings, canonicals & OG tags
-│   │   └── technical-analyzer.ts# HTTPS, Schema.org, WebP & robots checks
-│   ├── benchmark-data.ts       # 90-day Leena.ai dataset & scoring note content
-│   ├── constants.ts            # Weights, thresholds & presets
-│   └── utils.ts                # Score formatting, color helpers & URL normalizer
+│   ├── analyzer/                    # Core Analysis & Grading Engine
+│   │   ├── audience-detector.ts     # Semantic persona classification
+│   │   ├── content-analyzer.ts      # Headline clarity, value prop & readability
+│   │   ├── conversion-analyzer.ts   # Forms, CTAs, testimonials & trust signals
+│   │   ├── grader.ts                # Orchestration engine (fetches, parses, audits)
+│   │   ├── page-fetcher.ts          # HTTP client with timeouts & header extraction
+│   │   ├── pagespeed.ts             # Google PageSpeed Insights API client
+│   │   ├── scorer.ts                # Deterministic scoring logic for Rubric v1 & v2
+│   │   ├── seo-analyzer.ts          # Meta tags, headings, canonicals & OG tags
+│   │   ├── technical-analyzer.ts    # HTTPS, Schema.org, WebP & robots checks
+│   │   └── index.ts                 # Analyzer barrel export
+│   ├── benchmark-data.ts            # 90-day Leena.ai dataset & scoring note content
+│   ├── constants.ts                 # Weights, thresholds & presets
+│   └── utils.ts                     # Backward-compatible re-export from @/utils
 └── types/
-    └── index.ts                # TypeScript interfaces & types
+    └── index.ts                     # Complete TypeScript domain interfaces
 ```
 
 ---

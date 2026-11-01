@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import type { RubricCategory } from "@/types";
-import { getScoreColor, getScoreBgColor } from "@/lib/utils";
+import { getScoreColor, getScoreBgColor } from "@/utils";
 import {
   ChevronDown,
   ChevronUp,

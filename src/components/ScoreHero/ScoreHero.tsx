@@ -2,7 +2,7 @@
 
 import React from "react";
 import type { GradeResult } from "@/types";
-import { formatScore, getScoreBgColor, getScoreLabel } from "@/lib/utils";
+import { formatScore, getScoreBgColor, getScoreLabel } from "@/utils";
 import { ExternalLink, Layers, Zap, Clock, ShieldCheck, Target, ArrowUpDown } from "lucide-react";
 
 interface ScoreHeroProps {

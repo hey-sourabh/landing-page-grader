@@ -1,19 +1,18 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { SCORING_NOTE } from "@/lib/benchmark-data";
+import { useClipboard } from "@/hooks";
 import { FileText, Copy, Check, Printer } from "lucide-react";
 
 export function ScoringNoteView() {
-  const [copied, setCopied] = useState(false);
+  const { copied, copy } = useClipboard();
 
   const handleCopy = () => {
     const text = SCORING_NOTE.sections
       .map((s) => `${s.heading}\n\n${s.content}`)
       .join("\n\n---\n\n");
-    navigator.clipboard.writeText(`${SCORING_NOTE.title}\n\n${text}`);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    copy(`${SCORING_NOTE.title}\n\n${text}`);
   };
 
   const handlePrint = () => {

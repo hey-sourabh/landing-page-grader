@@ -1,95 +1,39 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import type { GradeResult } from "@/types";
-import { Navbar } from "@/components/Navbar";
-import { UrlInputBar } from "@/components/UrlInputBar";
-import { ScoreHero } from "@/components/ScoreHero";
-import { AudienceCard } from "@/components/AudienceCard";
-import { RubricBreakdown } from "@/components/RubricBreakdown";
-import { BenchmarkView } from "@/components/BenchmarkView";
-import { ScoringNoteView } from "@/components/ScoringNoteView";
-import { Footer } from "@/components/Footer";
+import React from "react";
+import {
+  Navbar,
+  UrlInputBar,
+  ScoreHero,
+  AudienceCard,
+  RubricBreakdown,
+  BenchmarkView,
+  ScoringNoteView,
+  Footer,
+} from "@/components";
+import { useGrader } from "@/hooks";
 import { AlertCircle, RefreshCw, Sparkles } from "lucide-react";
 
 export default function HomePage() {
-  const [activeTab, setActiveTab] = useState<"grader" | "benchmark" | "scoring-note">("grader");
-  const [result, setResult] = useState<GradeResult | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [loadingStep, setLoadingStep] = useState<string>("");
-  const [error, setError] = useState<string | null>(null);
-  const [selectedRubric, setSelectedRubric] = useState<"v1" | "v2">("v2");
-
-  // Run initial grading on default page (HR Solution page) so the user sees immediate results
-  useEffect(() => {
-    gradePage("https://leena.ai/function/hr");
-  }, []);
-
-  const gradePage = async (url: string) => {
-    setIsLoading(true);
-    setError(null);
-    setLoadingStep("Connecting & fetching live page DOM...");
-
-    try {
-      // Progressive status updates for great UX
-      const timer1 = setTimeout(() => {
-        setLoadingStep("Querying Google PageSpeed Insights & Core Web Vitals...");
-      }, 1000);
-
-      const timer2 = setTimeout(() => {
-        setLoadingStep("Auditing semantic headlines, forms, CTAs & enterprise trust proof...");
-      }, 2500);
-
-      const timer3 = setTimeout(() => {
-        setLoadingStep("Detecting target audience & calibrating dynamic weights...");
-      }, 4000);
-
-      const response = await fetch("/api/grade", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url }),
-      });
-
-      clearTimeout(timer1);
-      clearTimeout(timer2);
-      clearTimeout(timer3);
-
-      const data = await response.json();
-
-      if (!response.ok || !data.success) {
-        throw new Error(data.error || "Failed to grade page.");
-      }
-
-      setResult(data.data);
-      setActiveTab("grader");
-    } catch (err: unknown) {
-      console.error("Grading failed:", err);
-      setError(
-        (err instanceof Error ? err.message : null) ||
-          "Could not analyze this URL. Please verify the URL is accessible and try again."
-      );
-    } finally {
-      setIsLoading(false);
-      setLoadingStep("");
-    }
-  };
-
-  const handleToggleRubric = (version: "v1" | "v2") => {
-    setSelectedRubric(version);
-  };
-
-  // Determine which categories to show based on selected rubric version
-  const displayedCategories =
-    selectedRubric === "v1" && result?.v1Categories
-      ? result.v1Categories
-      : result?.categories || [];
+  const {
+    activeTab,
+    setActiveTab,
+    result,
+    isLoading,
+    loadingStep,
+    error,
+    selectedRubric,
+    handleToggleRubric,
+    gradePage,
+    displayedCategories,
+  } = useGrader("https://leena.ai/function/hr");
 
   return (
     <div className="min-h-screen bg-slate-50/50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col font-sans transition-colors">
       <Navbar activeTab={activeTab} setActiveTab={setActiveTab} />
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-        {/* URL Input Bar is sticky / prominent on the Grader tab */}
+        {/* URL Input Bar is prominent on the Grader tab */}
         {activeTab === "grader" && (
           <div className="space-y-4 text-center">
             <div className="max-w-2xl mx-auto space-y-2">
