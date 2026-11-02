@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import type { GradeResult, RubricCategory } from "@/types";
 
-export type GraderTab = "grader" | "benchmark" | "scoring-note";
+export type GraderTab = "grader" | "benchmark";
 export type RubricVersion = "v1" | "v2";
 
 export interface UseGraderReturn {

@@ -1,18 +1,18 @@
 "use client";
 
 import React, { useState } from "react";
-import { Gauge, Sparkles, BarChart3, FileText, Menu, X } from "lucide-react";
+import { Gauge, Sparkles, BarChart3, Menu, X } from "lucide-react";
 import { MobileNavDrawer } from "./MobileNavDrawer";
 
 interface NavbarProps {
-  activeTab: "grader" | "benchmark" | "scoring-note";
-  setActiveTab: (tab: "grader" | "benchmark" | "scoring-note") => void;
+  activeTab: "grader" | "benchmark";
+  setActiveTab: (tab: "grader" | "benchmark") => void;
 }
 
 export function Navbar({ activeTab, setActiveTab }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const handleSelectTab = (tab: "grader" | "benchmark" | "scoring-note") => {
+  const handleSelectTab = (tab: "grader" | "benchmark") => {
     setActiveTab(tab);
     setMobileMenuOpen(false);
   };
@@ -70,19 +70,6 @@ export function Navbar({ activeTab, setActiveTab }: NavbarProps) {
             <span className="text-[10px] px-1.5 py-0.2 rounded-md bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-400 font-bold border border-indigo-200 dark:border-indigo-800">
               3
             </span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => handleSelectTab("scoring-note")}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-sm font-semibold transition-all ${
-              activeTab === "scoring-note"
-                ? "bg-slate-900 dark:bg-white text-white dark:text-slate-950 shadow-sm"
-                : "text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-900"
-            }`}
-          >
-            <FileText className="w-4 h-4 text-indigo-500 dark:text-indigo-400" />
-            <span>Scoring Note</span>
           </button>
         </nav>
 

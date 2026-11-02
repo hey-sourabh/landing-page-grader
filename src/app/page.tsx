@@ -8,7 +8,6 @@ import {
   AudienceCard,
   RubricBreakdown,
   BenchmarkView,
-  ScoringNoteView,
   EmptyState,
   Footer,
 } from "@/components";
@@ -124,8 +123,6 @@ export default function HomePage() {
             }}
           />
         )}
-
-        {activeTab === "scoring-note" && <ScoringNoteView />}
       </main>
 
       <Footer />

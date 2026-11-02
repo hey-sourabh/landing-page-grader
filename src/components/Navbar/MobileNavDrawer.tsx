@@ -1,11 +1,11 @@
 "use client";
 
 import React from "react";
-import { Sparkles, BarChart3, FileText, ChevronRight } from "lucide-react";
+import { Sparkles, BarChart3, ChevronRight } from "lucide-react";
 
 interface MobileNavDrawerProps {
-  activeTab: "grader" | "benchmark" | "scoring-note";
-  onSelectTab: (tab: "grader" | "benchmark" | "scoring-note") => void;
+  activeTab: "grader" | "benchmark";
+  onSelectTab: (tab: "grader" | "benchmark") => void;
 }
 
 export function MobileNavDrawer({ activeTab, onSelectTab }: MobileNavDrawerProps) {
@@ -73,36 +73,6 @@ export function MobileNavDrawer({ activeTab, onSelectTab }: MobileNavDrawerProps
         </div>
         <ChevronRight className="w-4 h-4 text-slate-400 flex-shrink-0" />
       </button>
-
-      <button
-        type="button"
-        onClick={() => onSelectTab("scoring-note")}
-        className={`w-full flex items-center justify-between p-3 rounded-2xl transition-all text-left ${
-          activeTab === "scoring-note"
-            ? "bg-indigo-50 dark:bg-indigo-950/50 border border-indigo-200 dark:border-indigo-800 text-indigo-900 dark:text-indigo-100"
-            : "hover:bg-slate-50 dark:hover:bg-slate-900 text-slate-800 dark:text-slate-200"
-        }`}
-      >
-        <div className="flex items-center gap-3">
-          <div
-            className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 ${
-              activeTab === "scoring-note"
-                ? "bg-indigo-600 text-white"
-                : "bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400"
-            }`}
-          >
-            <FileText className="w-4 h-4" />
-          </div>
-          <div>
-            <div className="text-sm font-bold">Official Scoring Note</div>
-            <div className="text-[11px] text-slate-500 dark:text-slate-400">
-              1-page rubric methodology & rationale
-            </div>
-          </div>
-        </div>
-        <ChevronRight className="w-4 h-4 text-slate-400 flex-shrink-0" />
-      </button>
     </div>
   );
 }
-
